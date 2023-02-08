@@ -37,6 +37,18 @@ public class TransactionController {
     @Autowired
     private CardController cardController;
 
+    public Object getTransactions() {
+        List<TransactionDto> list = transactionService.getTransactions();
+        List<TransactionDto> listProcesseDtos = new ArrayList<>();
+        list.forEach(t -> {
+            CardDto cardDto = t.getPan();
+            cardDto.setPan(cardController.enmascararPan(t.getPan().getPan()));
+            t.setPan(cardDto);
+            listProcesseDtos.add(t);
+        });
+        return listProcesseDtos;
+    }
+
     public Object getTransactionByCreationDate(LocalDate startTime, LocalDate endTime) {
         LocalDateTime startDateTime = LocalDateTime.of(startTime, LocalTime.of(0, 0, 0));
         LocalDateTime endDateTime = LocalDateTime.of(endTime, LocalTime.of(23, 59, 59, 999999999));

@@ -16,4 +16,6 @@ public interface TransactionService {
 
     TransactionDto getTransactionByReference(String reference);
 
+    List<TransactionDto> getTransactions();
+
 }

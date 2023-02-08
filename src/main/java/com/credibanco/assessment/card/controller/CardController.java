@@ -1,6 +1,8 @@
 package com.credibanco.assessment.card.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 import javax.validation.Valid;
@@ -38,6 +40,16 @@ public class CardController {
         cardDto.setCardId(null);
         cardDto.setEstado(StatusDto.builder().estado(cardDto.getEstado().getEstado()).build());
         return cardDto;
+    }
+
+    public List<CardDto> getCards() {
+        List<CardDto> list = cardService.getCards();
+        List<CardDto> cardDtos = new ArrayList<>();
+        list.forEach(c -> {
+            c.setPan(enmascararPan(c.getPan()));
+            cardDtos.add(c);
+        });
+        return cardDtos;
     }
 
     public Object createCard(CardDto cardDto) {

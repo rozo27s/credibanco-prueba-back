@@ -1,5 +1,8 @@
 package com.credibanco.assessment.card.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -44,6 +47,13 @@ public class CardServiceImpl implements CardService {
     @Override
     public void deleteCard(CardDto cardDelete) {
         cardRepository.delete(cardDtoTranslate.to(cardDelete));
+    }
+
+    @Override
+    public List<CardDto> getCards() {
+        List<CardDto> list = new ArrayList<>();
+        cardRepository.findAll().forEach(c -> list.add(cardTranslate.to(c)));
+        return list;
     }
 
 }

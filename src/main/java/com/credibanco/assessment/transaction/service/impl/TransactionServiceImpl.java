@@ -63,4 +63,11 @@ public class TransactionServiceImpl implements TransactionService {
         return transactionTranslate.to(transactionRepository.save(transactionDtoTranslate.to(transactionDto)));
     }
 
+    @Override
+    public List<TransactionDto> getTransactions() {
+        List<TransactionDto> listTransactionDtos = new ArrayList<>();
+        transactionRepository.findAll().forEach(t -> listTransactionDtos.add(transactionTranslate.to(t)));
+        return listTransactionDtos;
+    }
+
 }

@@ -39,10 +39,10 @@ public class TransactionsWebApi {
     @GetMapping(ConfigurationConstants.REQUEST_FIND_TRANSACTION)
     public ResponseEntity<Object> getTransaction(
             @DateTimeFormat(pattern = ConfigurationConstants.SIMPLE_DATE_FORMAT)
-            @RequestParam(required = true) final LocalDate initialDate,
+            @RequestParam(required = false) final LocalDate initialDate,
             @DateTimeFormat(pattern = ConfigurationConstants.SIMPLE_DATE_FORMAT)
-            @RequestParam(required = true) final LocalDate endDate) {
-        return ResponseEntity.ok(transactionController.getTransactionByCreationDate(initialDate, endDate));
+            @RequestParam(required = false) final LocalDate endDate) {
+        return ResponseEntity.ok(transactionController.getTransactions());
     }
     
     @PostMapping(ConfigurationConstants.REQUEST_CREATE_TRANSACTION)
