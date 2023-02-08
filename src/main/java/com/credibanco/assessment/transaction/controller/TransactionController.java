@@ -37,7 +37,15 @@ public class TransactionController {
     @Autowired
     private CardController cardController;
 
-    public Object getTransactions() {
+    public Object getTransactions(LocalDate initialDate, LocalDate endDate) {
+        if (Objects.isNull(initialDate) || Objects.isNull(endDate)) {
+            return getAllTransactions();
+        } else {
+            return getTransactionByCreationDate(initialDate, endDate);
+        }
+    }
+
+    private List<TransactionDto> getAllTransactions() {
         List<TransactionDto> list = transactionService.getTransactions();
         List<TransactionDto> listProcesseDtos = new ArrayList<>();
         list.forEach(t -> {
@@ -49,7 +57,7 @@ public class TransactionController {
         return listProcesseDtos;
     }
 
-    public Object getTransactionByCreationDate(LocalDate startTime, LocalDate endTime) {
+    public List<TransactionDto> getTransactionByCreationDate(LocalDate startTime, LocalDate endTime) {
         LocalDateTime startDateTime = LocalDateTime.of(startTime, LocalTime.of(0, 0, 0));
         LocalDateTime endDateTime = LocalDateTime.of(endTime, LocalTime.of(23, 59, 59, 999999999));
         List<TransactionDto> list = transactionService.getTransactionByCreationDate(startDateTime, endDateTime);

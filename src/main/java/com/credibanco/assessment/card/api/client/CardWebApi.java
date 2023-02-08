@@ -38,7 +38,7 @@ public class CardWebApi {
     @GetMapping(ConfigurationConstants.REQUEST_FIND_CARD)
     public ResponseEntity<Object> getcard(
             @RequestParam(required = false) final String pan) {
-        return ResponseEntity.ok(cardController.getCards());
+        return ResponseEntity.ok(cardController.getCards(pan));
     }
     
     @PostMapping(ConfigurationConstants.REQUEST_CREATE_CARD)

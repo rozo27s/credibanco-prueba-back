@@ -1,6 +1,8 @@
 package com.credibanco.assessment.card.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -34,15 +36,27 @@ public class CardController {
             throw new BadRequestException(Messages.NOT_NUMERIC_PAN);
         }
         CardDto cardDto = cardService.getCardByPan(pan);
-        cardDto.setPan(this.enmascararPan(cardDto.getPan()));
-        cardDto.setTipo(null);
-        cardDto.setCodigoValidacion(null);
-        cardDto.setCardId(null);
-        cardDto.setEstado(StatusDto.builder().estado(cardDto.getEstado().getEstado()).build());
+        if (Objects.nonNull(cardDto)) {
+            cardDto.setPan(this.enmascararPan(cardDto.getPan()));
+            cardDto.setEstado(StatusDto.builder().estado(cardDto.getEstado().getEstado()).build());
+        }
         return cardDto;
     }
 
-    public List<CardDto> getCards() {
+    public List<CardDto> getCards(String pan) {
+        if (Objects.isNull(pan)) {
+            return getAllCards();
+        } else {
+            CardDto cardDto = getCardByPan(pan);
+            if (Objects.nonNull(cardDto)) {
+                return Arrays.asList(getCardByPan(pan));
+            } else {
+                return Collections.emptyList();
+            }
+        }
+    }
+
+    private List<CardDto> getAllCards() {
         List<CardDto> list = cardService.getCards();
         List<CardDto> cardDtos = new ArrayList<>();
         list.forEach(c -> {

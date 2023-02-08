@@ -42,7 +42,7 @@ public class TransactionsWebApi {
             @RequestParam(required = false) final LocalDate initialDate,
             @DateTimeFormat(pattern = ConfigurationConstants.SIMPLE_DATE_FORMAT)
             @RequestParam(required = false) final LocalDate endDate) {
-        return ResponseEntity.ok(transactionController.getTransactions());
+        return ResponseEntity.ok(transactionController.getTransactions(initialDate, endDate));
     }
     
     @PostMapping(ConfigurationConstants.REQUEST_CREATE_TRANSACTION)

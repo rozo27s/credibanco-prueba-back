@@ -24,7 +24,7 @@ public class ConfigurationConstants {
     public static final String REQUEST_TRANSACTIONS = "transactions";
     public static final String REQUEST_CREATE_TRANSACTION = "create-transaction";
     public static final String REQUEST_CANCEL_TRANSACTION = "cancel-transaction";
-    public static final String SIMPLE_DATE_FORMAT = "dd-MM-yyyy";
+    public static final String SIMPLE_DATE_FORMAT = "yyyy-MM-dd";
     public static final String SIMPLE_DATE_TIME_FORMAT = "dd-MM-yyyy HH:mm:ss";
 
 }
