@@ -1,0 +1,22 @@
+ext {
+
+	 SPRING = [['org.springframework.boot:spring-boot-starter-data-jpa'],
+				['org.springframework.boot:spring-boot-starter-web'],
+				['org.springframework.boot:spring-boot-starter-web-services'],
+				['org.springframework.boot:spring-boot-starter-actuator'],
+				['org.springframework.boot:spring-boot-starter-validation']]
+    
+     LOG4J2 = [['org.apache.logging.log4j:log4j-api'],
+               ['org.apache.logging.log4j:log4j-core']]
+
+     SPRINGUT = [['org.springframework.boot:spring-boot-starter-test']]
+
+     JWT = [['com.google.code.gson:gson'],
+		   ['io.jsonwebtoken:jjwt-api:0.11.1'],
+		   ['io.jsonwebtoken:jjwt-impl:0.11.1'],
+		   ['io.jsonwebtoken:jjwt-jackson:0.11.1']]
+     
+     MYSQL =[['com.mysql:mysql-connector-j:8.0.31']]
+
+     LOMBOK =[['org.projectlombok:lombok:1.18.26']]
+}

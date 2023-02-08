@@ -1,0 +1,33 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.5'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'java'
+	id 'jacoco'
+}
+
+group = 'com.group.base'
+version = '0.0.1'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+apply from: 'dependencies.gradle'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation SPRING, LOG4J2
+	runtimeOnly MYSQL, JWT
+	annotationProcessor LOMBOK
+	testImplementation SPRINGUT
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
